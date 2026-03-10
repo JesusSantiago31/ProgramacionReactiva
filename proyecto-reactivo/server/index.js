@@ -33,6 +33,11 @@ const Sensor = mongoose.model("Sensor", sensorSchema);
 // RUTAS DE LA API (Endpoints)
 // ==========================================
 
+// Ruta raíz para verificar que el servidor funciona
+app.get("/", (req, res) => {
+  res.send("Backend de Sensores funcionando correctamente!");
+});
+
 // GET /api/sensores - Obtener todos los sensores
 app.get("/api/sensores", async (req, res) => {
   try {

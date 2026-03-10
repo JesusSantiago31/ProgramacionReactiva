@@ -8,7 +8,8 @@ function App() {
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(true);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/sensores';
+  const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+  const API_URL = `${BASE_URL}/api/sensores`;
 
   // Cargar sensores al iniciar
   useEffect(() => {
