@@ -4,15 +4,18 @@ const bodyParser = require("body-parser"); // Middleware para parsear JSON en la
 const mongoose = require("mongoose"); // Biblioteca para modelado de datos de MongoDB
 
 const app = express(); // Creamos la aplicación Express
-const PORT = 3001; // Puerto donde escuchará el servidor
+const PORT = process.env.PORT || 3001;
 
-// --- MIDDLEWARES (Configuración previa) ---
-app.use(cors()); // Habilita CORS
-app.use(bodyParser.json()); // Permite recibir datos en formato JSON
+// --- MIDDLEWARES ---
+app.use(cors());
+app.use(bodyParser.json());
 
 // --- CONEXIÓN A MONGODB ---
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/sensores_db";
+
 mongoose
-  .connect("mongodb://localhost:27017/sensores_db")
+  .connect(MONGODB_URI)
   .then(() => console.log("Conectado a MongoDB..."))
   .catch((err) => console.error("No se pudo conectar a MongoDB:", err));
 
